@@ -1,0 +1,6 @@
+Square TopRight 2 2 BottomLeft 1 1
+Rectangle TopRight 2 2 BottomLeft 1 1
+Circle radius 4
+Triangle Point1 5 5 Point2 8 8 Point3 10 2
+Square TopLeft 1 2 BottomRight 2 1
+Square side 3
