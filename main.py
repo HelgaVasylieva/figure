@@ -8,9 +8,6 @@ class Shape:
     def perimeter(self):
         pass
 
-
-
-
 class Rectangle(Shape):
     def __init__(self, side1, side2):
         self.side1 = side1
@@ -51,6 +48,19 @@ class Triangle(Shape):
     def area(self):
         p = (self.side1 + self.side2 + self.side3) / 2
         return math.sqrt(p*(p - self.side1)*(p - self.side2)*(p - self.side3))
+
+    @classmethod
+    def parse_input(cls, parts):
+        p1_index = parts.index("point1") + 1
+        p2_index = parts.index("point2") + 1
+        p3_index = parts.index("point3") + 1
+        x1, y1 = float(parts[p1_index]), float(parts[p1_index + 1])
+        x2, y2 = float(parts[p2_index]), float(parts[p2_index + 1])
+        x3, y3 = float(parts[p3_index]), float(parts[p3_index + 1])
+        side1 = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        side2 = math.sqrt((x3 - x2) ** 2 + (y3 - y2) ** 2)
+        side3 = math.sqrt((x1 - x3) ** 2 + (y1 - y3) ** 2)
+        return Triangle(side1, side2, side3)
 
 
 def parse_input(input_line):
@@ -111,16 +121,7 @@ def parse_input(input_line):
             return Circle(radius)
 
     elif shape_type == "triangle":
-        p1_index = parts.index("point1") + 1
-        p2_index = parts.index("point2") + 1
-        p3_index = parts.index("point3") + 1
-        x1, y1 = float(parts[p1_index]), float(parts[p1_index + 1])
-        x2, y2 = float(parts[p2_index]), float(parts[p2_index + 1])
-        x3, y3 = float(parts[p3_index]), float(parts[p3_index + 1])
-        side1 = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-        side2 = math.sqrt((x3 - x2) ** 2 + (y3 - y2) ** 2)
-        side3 = math.sqrt((x1 - x3) ** 2 + (y1 - y3) ** 2)
-        return Triangle(side1, side2, side3)
+        return Triangle.parse_input(parts)
 
     else:
         raise ValueError("Unknown shape type")
