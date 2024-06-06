@@ -9,15 +9,6 @@ class Shape:
         pass
 
 
-class Square(Shape):
-    def __init__(self, side):
-        self.side = side
-
-    def area(self):
-        return self.side**2
-
-    def perimeter(self):
-        return self.side*4
 
 
 class Rectangle(Shape):
@@ -32,6 +23,11 @@ class Rectangle(Shape):
         return (self.side1 + self.side2)*2
 
 
+class Square(Rectangle):
+    def __init__(self, side):
+        super().__init__(side1=side, side2=side)
+
+
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
@@ -41,6 +37,7 @@ class Circle(Shape):
 
     def perimeter(self):
         return 2 * math.pi * self.radius
+
 
 class Triangle(Shape):
     def __init__(self, side1, side2, side3):
